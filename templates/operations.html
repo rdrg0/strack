@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Operations
+{% endblock %}
+{% block main %}
+                <table id="opsTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Account</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for i in range(operations|length): %}
+                            {% if operations[i]['amount'] >= 0 %}
+                            <tr>
+                                <td class="positiveAmount">{{operations[i]['date']}}</td>
+                                <td class="positiveAmount">{{operations[i]['description']}}</td>
+                                <td class="positiveAmount">{{operations[i]['account']}}</td>
+                                <td class="positiveAmount">{{operations[i]['amount']|usd}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td class="negativeAmount">{{operations[i]['date']}}</td>
+                                <td class="negativeAmount">{{operations[i]['description']}}</td>
+                                <td class="negativeAmount">{{operations[i]['account']}}</td>
+                                <td class="negativeAmount">{{operations[i]['amount']|usd}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                    </tbody>
+                </table>
+{% endblock %}

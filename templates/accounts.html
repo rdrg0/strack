@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Operations
+{% endblock %}
+
+{% block main %}
+
+    
+<div>
+  <h1 id="total">{{total|usd}}</h1>
+  <h2 id="balance">Balance</h2>
+</div>
+<div class="accordion" id="accordionExample"></div>
+  {%- for i in range(accounts|length): -%}
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#account{{i}}" aria-expanded="true" aria-controls="collapseOne">
+            <span style="float:left">{{accounts[i]['account_name']}}</span>
+            {%- if accounts[i]['sub_total'] >= 0 -%}
+            <span class="positiveAmount" style="float:right">{{accounts[i]['sub_total']|usd}}</span>
+            {%- else -%}
+            <span class="negativeAmount" style="float:right">{{accounts[i]['sub_total']|usd}}</span>
+            {%- endif -%}
+          </button>
+        </h2>
+      </div>
+
+      <div id="account{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body table-responsive">
+            <table style="margin-bottom: 0px" class="table table-hover">
+
+    
+            <tbody align=left>
+                {%- for j in range(operations|length): -%}                
+                  {%- if operations[j]['account'] == accounts[i]['account_name']: -%}
+                    {%- if operations[j]['amount'] >= 0 -%}
+                    <tr>
+                        <td class="positiveAmount">{{operations[j]['date']}}</td>
+                        <td class="positiveAmount">{{operations[j]['description']}}</td>
+                        <td style="text-align:right" class="positiveAmount">{{operations[j]['amount']|usd}}</td>
+                    </tr>
+                    {%- else -%}
+                    <tr>
+                        <td class="negativeAmount">{{operations[j]['date']}}</td>
+                        <td class="negativeAmount">{{operations[j]['description']}}</td>
+                        <td style="text-align:right" class="negativeAmount">{{operations[j]['amount']|usd}}</td>
+                    </tr>          
+                    {%- endif -%}    
+                  {%- endif -%}
+                {%- endfor -%}
+            </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  {%- endfor -%}
+</div>
+<button type="button" class="btn btn-outline-secondary addBtn">
+  +
+</button>
+
+<form action="/" method="post" class="d-flex justify-content-center">
+  <div class="form-row addForm">
+    <div class="col-auto">
+      <input autocomplete="off" type="text" class="form-control" name="accountName" placeholder="Account Name" required="true" maxlength="20">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-outline-secondary">Create Account</button>
+    </div>
+  </div>
+</form>
+
+
+<script>
+
+/// button rotation
+  let addBtn = document.querySelector(".addBtn");
+  let rotated = false
+  
+
+  addBtn.addEventListener('click', opened);
+
+  function opened(){
+
+    if (rotated){
+      document.querySelector(".addBtn").style.rotate = "0deg";
+      closeForm();
+      rotated = false;
+    }
+    else{
+      document.querySelector(".addBtn").style.rotate = "45deg";
+      openForm();
+      rotated = true;
+    }
+
+    
+  }
+/// Pop up form functions
+  function openForm() {
+  document.querySelector(".addForm").style.display = "inherit";
+  }
+
+  function closeForm() {
+    document.querySelector(".addForm").style.display = "none";
+  }
+
+
+  
+</script>
+
+{% endblock %}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.jqueryui.min.css">
+       
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.jqueryui.min.js"></script>
+        
+        <script>
+            $(document).ready(function() {
+                $('#opsTable').DataTable( {
+                    "order": [[ 0, "desc" ]]
+                    } );
+            } );
+        </script>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet"> 
+
+        <title>Strack: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar-expand-md navbar-dark sticky-top bg-dark" id="topnav">
+            <a class="navbar-brand" href="/"><span class="gray">STRACK</span></a>
+            <button aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler float-right" data-target="#navbar" data-toggle="collapse" type="button" id="toggler">
+                <span class="navbar-toggler-icon ml"></span>
+            </button>
+        </nav>
+
+        
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+    
+            <div class="navbar navbar-expand-md navbar-dark bg-secondary sidenav">
+            <div class="navbar navbar-expand-md navbar-dark bg-secondary sidenav collapse navbar-collapse" id="navbar">
+                {% if session.user_id %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/addincome">Add income</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/addexpense">Add expense</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/transfer">Transfer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/operations">Operations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                    
+                {% else %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+            </div>
+
+    
+        <main>           
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="small text-center text-muted">
+            Developed by <a href="https://github.com/rdrg0">rdrg0</a> as <a href="https://cs50.harvard.edu/x/2020/">CS50x</a> final project.
+        </footer>
+
+        <script>
+
+        ///resize animation stopper
+            let resizeTimer;
+            window.addEventListener("resize", () => {
+              document.body.classList.add("resize-animation-stopper");
+              clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(() => {
+                document.body.classList.remove("resize-animation-stopper");
+              }, 400);
+            });
+
+        ///moves content down in main when menu button is clicked   
+            let btn = document.getElementById("toggler");
+            let toggled = false;
+  
+            
+        
+            
+            btn.addEventListener('click', mvCont);
+  
+            function mvCont() {
+  
+            if (!toggled){
+        
+                document.querySelector("main").style.paddingTop = "224px";
+                toggled = true;
+  
+            }
+            else {
+                document.querySelector("main").style.paddingTop = "20px";
+                toggled = false;
+            }     
+            }
+        </script>
+
+    </body>
+
+</html>
+

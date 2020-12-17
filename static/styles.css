@@ -1,0 +1,230 @@
+
+nav .navbar-brand .gray
+{
+    /* size for brand */
+    font-size: xx-large;
+    color: rgb(148, 148, 148);
+    
+}
+
+.navbar-brand
+{
+    font-family: 'Racing Sans One', cursive;
+    
+    
+}
+
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+                
+    /* center contents */
+    text-align: center;
+    transition: 0.3s all ease;
+    padding-top: 20px;
+    margin-bottom: 40px;
+    
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+    
+}
+
+.positiveAmount
+{
+    color: rgb(148 , 148, 148);    
+}
+
+.negativeAmount
+{
+    color: rgba(226, 70, 70, 0.966);
+}
+
+.btn-link, .btn-link:hover, .btn-link:visited, .btn-link:visited, .btn-link:link
+{
+    text-decoration: none;
+    color:gray
+}
+
+#topnav
+{
+    text-align: center;
+    float: none;
+}
+
+.resize-animation-stopper * 
+{
+    animation: none !important;
+    transition: none !important;
+}
+
+.addBtn
+{
+    border-radius: 50%;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;       
+    display: inline-block;
+    font-size: x-large;
+    height: 50px;
+    width: 50px;
+    
+    justify-content: center;
+    font-family: arial;
+    line-height: 0px;
+    transition: 0.5s;
+   
+}
+
+.addForm
+{
+    margin-bottom: 40px;
+    display: none;
+    animation: popout 0.5s ease;
+    -webkit-animation: popout 0.5s ease;
+}
+
+@keyframes popout {
+    from{transform:scale(0)}
+    95%{transform:scale(1)}
+    to{transform:scale(1)}
+}
+@-webkit-keyframes popout {
+    from{-webkit-transform:scale(0)}
+    95%{-webkit-transform:scale(1)}
+    to{-webkit-transform:scale(1)}
+}
+
+
+#headingOne
+{
+    background: rgb(245, 245, 245);
+}
+
+.navbar-toggler
+{
+   margin: 10px;
+   
+
+}
+
+#balance
+{
+    font-size: 15px;
+    margin-top: 0px;
+    color: rgb(148, 148, 148);
+}
+#total
+{
+    margin: 0px;
+    padding: 0px;
+    color:rgb(148, 148, 148)
+    
+}
+
+
+#opsTable{
+    z-index: 9999;
+}
+#opsTable th{
+    font-size: small;
+    height: 2px;
+    line-height: 2px;
+    color: rgb(108, 117, 125);
+}
+
+.centerForm{
+    margin-top: 20px;
+}
+.card-body{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+footer{
+
+
+    margin-bottom: 10px;
+    
+}
+
+.dataTables_length, .dataTables_length select, .dataTables_filter, .dataTables_info{
+    color:rgb(108, 117, 125) !important;
+    
+}
+@media screen and (min-width:768px){
+
+    .navbar, .collapse ul {
+      float:left;
+      flex-direction:column!important;
+      
+
+
+    
+    }
+    .menuMargin{
+
+        margin-left: 139.5px !important;
+        
+
+    }
+
+    .sidenav{
+
+        float:left;
+        flex-direction:column!important;
+        height: 100vh;
+        width: 138px;
+        position: fixed;
+        margin: 0px;
+  
+    }
+
+    main{
+
+        margin-left: 139.5px;
+    }
+    .centerForm, #total, #balance, .addBtn, .justify-content-center {
+    
+        margin-right: 139.5px;
+        
+    }
+
+}
+
+@media screen and (max-width:767px){
+    .sidenav{
+
+        position: fixed;
+        width: 100%;
+        padding-left: 0px;
+        top: 58px;
+        
+        
+    }
+    #topnav{
+        text-align: left;
+        padding-left: 10px;
+    }
+       
+}
+
+
+
+
+
+
+
+

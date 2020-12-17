@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add expense
+{% endblock %}
+
+{% block main %}
+    <form class="centerForm" action="/addexpense" method="post">
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="description" placeholder="Description" type="text" required="true">
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="account" required="true">
+                <option disabled selected value="">Account</option>
+
+                {% for i in range(accounts|length): %}
+                    <option value="{{accounts[i]}}">{{accounts[i]}}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" min="0.01" max="100000" name="amount" placeholder="Amount" type="number" step="0.01" required="true">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="date" placeholder="Date" type="date" required="true">
+        </div>
+        <button class="btn btn-secondary" type="submit">Add expense</button>
+    </form>
+{% endblock %}
